@@ -1,3 +1,4 @@
+//Shreetosh Shelar; GameDev
 canvas = document.getElementById("myCanvas");
 l = canvas.getContext("2d");
 
@@ -5,10 +6,7 @@ canvas.width = 1200;
 canvas.height = 750;
 
 var x = 480, bRadius = 15, btRadius = 50;
-
 var bPosition=[];
-//={x:Math.random()*1200, y:25};
-
 var btPosition = {x:700, y:690};  
 var speed = 2;
 var velocity = {x:speed, y:-speed};
@@ -21,9 +19,7 @@ var bcnt=-1,drawcnt=-1;
      
     if (bPosition[i].x + bRadius >= x - 50 && bPosition[i].x + bRadius <= x + 50){
       if (bPosition[i].y + bRadius >= 690 && bPosition[i].y <= 690 + 10){
-        //velocity.y *= -1;
         score += 1;
-        //bRadius -= bRadius;
         bPosition.splice(i,1); bcnt--;
        }
       }
@@ -42,8 +38,8 @@ var bcnt=-1,drawcnt=-1;
 
 function draw()
 {
-//l.clearRect(0, 0, canvas.width, canvas.height);
 drawcnt++;
+
 //Playing Area
 l.fillStyle = "#000000";
 l.beginPath();
@@ -61,7 +57,7 @@ for(i=0;i<bcnt;i++)
 { 
     ballCollision(i);
     l.beginPath();
-    l.fillStyle = bPosition[i].c; //"GREEN"; // randomColor; 
+    l.fillStyle = bPosition[i].c;  
     l.arc(bPosition[i].x, bPosition[i].y, bRadius, 0, Math.PI*2, false);
     l.fill();
     l.closePath();
@@ -94,7 +90,7 @@ onmousemove = function(e){
 };
 
 function setLevel(){
-  var level = prompt("Select Level (Easy, Normal, Hard)", "Normal");
+  var level = prompt("Select Level (Easy, Normal, Hard, Pro)", "Normal");
   if (level == "Easy") {
    
     setInterval(draw,15); 
@@ -106,13 +102,12 @@ function setLevel(){
   if (level == "Hard") {
     setInterval(draw,5); 
   }
-  if (level == "Devil") {
+  if (level == "Pro") {
     setInterval(draw,1); 
   }
 }
 //start
 setInterval(gameOver,1);
-
 setLevel();
 gameOver();
 
