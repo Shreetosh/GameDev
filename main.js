@@ -104,7 +104,7 @@ onmousemove = function(e){
 
 function setLevel(){
   
-  var level = prompt("Select Level (Easy, Normal, Hard, Pro)", "Normal");
+  var level = prompt("Select Level (Easy, Normal, Hard, Pro)", "Hard");
   
   if (level.toUpperCase() == "EASY") {
     setInterval(draw,15);     
