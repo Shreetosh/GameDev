@@ -75,6 +75,8 @@ l.closePath();
 //scorecard
 l.font = "30px Arial";
   l.fillText(score, 1150, 50)
+//Lives
+l.font = "30px Arial"
 }
 
 
