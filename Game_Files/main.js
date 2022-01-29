@@ -1,4 +1,5 @@
 //Shreetosh Shelar; GameDev
+
 canvas = document.getElementById("myCanvas");
 l = canvas.getContext("2d");
 
