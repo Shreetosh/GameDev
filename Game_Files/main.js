@@ -7,21 +7,21 @@ canvas.width = 1200;
 canvas.height = 750;
 
 var x = 480, bRadius = 15, btRadius = 50;
-var bPosition=[];
-var btPosition = {x:700, y:690};  
+var bPosition=[]; //Ball array
+var btPosition = {x:700, y:690};  //Basket
 var speed = 2;
 var velocity = {x:speed, y:-speed};
 var e = window.event;
 var score = 0;
+var lives = 3;
 var bcnt=-1,drawcnt=-1;
 
-
-  function ballCollision(i){
+  function ballCollision(i){ //check for collision of a ball with basket
      
     if (bPosition[i].x + bRadius >= x - 50 && bPosition[i].x + bRadius <= x + 50){
       if (bPosition[i].y + bRadius >= 690 && bPosition[i].y <= 690 + 10){
         score += 1;
-        bPosition.splice(i,1); bcnt--;
+        bPosition.splice(i,1); bcnt--; //Remove ball from array
        }
       }
    
@@ -37,7 +37,7 @@ var bcnt=-1,drawcnt=-1;
     return color;
   }
 
-function draw()
+  function draw()
 {
 drawcnt++;
 
@@ -49,14 +49,14 @@ l.fill();
 l.closePath();
 
 //ball 
-if(drawcnt%100==0)
+if(drawcnt%100==0)  //Adds new ball afer 100th call
 {
  bcnt++;
  bPosition.push({x:Math.random()*1200, y:25, c:getRandomColor()});
 } 
-for(i=0;i<bcnt;i++)
+for(i=0;i<bcnt;i++) 
 { 
-    ballCollision(i);
+    ballCollision(i); //check ball in basket
     l.beginPath();
     l.fillStyle = bPosition[i].c;  
     l.arc(bPosition[i].x, bPosition[i].y, bRadius, 0, Math.PI*2, false);
@@ -71,47 +71,54 @@ l.beginPath();
 l.arc(x, btPosition.y, btRadius, 0, Math.PI, false);
 l.fill();
 l.closePath();
-
 //scorecard
 l.font = "30px Arial";
-  l.fillText(score, 1150, 50)
+l.fillText("Score:", 1050, 50)
+l.fillText(score, 1150, 50)
 //Lives
 l.font = "30px Arial"
+l.fillText("Lives:", 1050, 100);
+l.fillText(lives, 1150, 100); 
+
+gameOver();
+
 }
 
 
 function gameOver(){
 for(i=0;i<bcnt;i++)
-  if (bPosition[i].y + bRadius == canvas.height){
-    alert("Game Over!");
-    window.location.reload(true);
+  if (bPosition[i].y + bRadius == canvas.height){ //If ball falls
+    lives--; //decrement live count
+     
+    if (lives==0)
+    { alert("Game Over!"); 
+      window.location.reload(true);
+    }
+    }
   }
-}
+
 
 onmousemove = function(e){
   x = e.clientX - 60;
 };
 
 function setLevel(){
+  
   var level = prompt("Select Level (Easy, Normal, Hard, Pro)", "Normal");
-  if (level == "Easy") {
-   
-    setInterval(draw,15); 
-       
+  
+  if (level.toUpperCase() == "EASY") {
+    setInterval(draw,15);     
   }
-  if (level == "Normal") {
+  if (level.toUpperCase() == "NORMAL") {
     setInterval(draw,10); 
   }
-  if (level == "Hard") {
+  if (level.toUpperCase() == "HARD") {
     setInterval(draw,5); 
   }
-  if (level == "Pro") {
+  if (level.toUpperCase() == "PRO") {
     setInterval(draw,1); 
-  }
+  }  
 }
-//start
-setInterval(gameOver,1);
-setLevel();
-gameOver();
 
+setLevel();
 
