@@ -109,18 +109,16 @@ function setLevel(){
   if (level.toUpperCase() == "EASY") {
     setInterval(draw,15);     
   }
-  else if (level.toUpperCase() == "NORMAL") {
+   if (level.toUpperCase() == "NORMAL") {
     setInterval(draw,10); 
   }
-  else if (level.toUpperCase() == "HARD") {
+   if (level.toUpperCase() == "HARD") {
     setInterval(draw,5); 
   }
-  else if (level.toUpperCase() == "PRO") {
+   if (level.toUpperCase() == "PRO") {
     setInterval(draw,1); 
   } 
-  else {alert("Incorrect Option!");
-  window.location.reload(true); 
-}
+   
 }
 
 setLevel();
