@@ -117,7 +117,8 @@ function setLevel(){
   }
   if (level.toUpperCase() == "PRO") {
     setInterval(draw,1); 
-  }  
+  }
+  else alert("Incorrect Option!");  
 }
 
 setLevel();
