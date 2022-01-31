@@ -8,7 +8,7 @@ canvas.height = 720;
 
 var x = 480, bRadius = 15, btRadius = 50;
 var bPosition=[]; //Ball array
-var btPosition = {x:700, y:650};  //Basket
+var btPosition = {x:700, y:610};  //Basket
 var speed = 2;
 var velocity = {x:speed, y:-speed};
 var e = window.event;
