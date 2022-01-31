@@ -4,7 +4,7 @@ canvas = document.getElementById("myCanvas");
 l = canvas.getContext("2d");
 
 canvas.width = 1200;
-canvas.height = 750;
+canvas.height = 720;
 
 var x = 480, bRadius = 15, btRadius = 50;
 var bPosition=[]; //Ball array
@@ -36,6 +36,18 @@ var bcnt=-1,drawcnt=-1;
     }
     return color;
   }
+
+  function gameOver(){
+    for(i=0;i<bcnt;i++)
+      if (bPosition[i].y + bRadius == canvas.height){ //If ball falls
+        lives--; //decrement live count
+         
+        if (lives==0)
+        { alert("Game Over!"); 
+          window.location.reload(true);
+        }
+        }
+      }
 
   function draw()
 {
@@ -83,19 +95,6 @@ l.fillText(lives, 1150, 100);
 gameOver();
 
 }
-
-
-function gameOver(){
-for(i=0;i<bcnt;i++)
-  if (bPosition[i].y + bRadius == canvas.height){ //If ball falls
-    lives--; //decrement live count
-     
-    if (lives==0)
-    { alert("Game Over!"); 
-      window.location.reload(true);
-    }
-    }
-  }
 
 
 onmousemove = function(e){
